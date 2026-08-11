@@ -11,6 +11,7 @@ RUN apt-get update \
         nodejs \
         npm \
 		openssh-client \
+		sshpass \
         git \
 		iputils-ping \
     && rm -rf /var/lib/apt/lists/*
