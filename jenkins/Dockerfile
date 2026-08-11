@@ -12,7 +12,7 @@ RUN apt-get update \
         npm \
 		openssh-client \
         git \
-		ping \
+		iputils-ping \
     && rm -rf /var/lib/apt/lists/*
 
 USER jenkins
