@@ -1,12 +1,12 @@
-- name: Exemplo local
+- name: Local example
   hosts: localhost
   connection: local
   gather_facts: false
   tasks:
-    - name: Exibir mensagem
-      ansible.builtin.command: echo "Ansible executado com sucesso"
-      register: mensagem
+    - name: Display message
+      ansible.builtin.command: echo "Ansible ran successfully"
+      register: message
 
-    - name: Mostrar mensagem
+    - name: Show message
       ansible.builtin.debug:
-        var: mensagem.stdout
+        var: message.stdout
