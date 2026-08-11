@@ -10,7 +10,6 @@ services:
       JAVA_OPTS: -Djenkins.install.runSetupWizard=false
       CASC_JENKINS_CONFIG: /usr/share/jenkins/ref/jenkins.yaml
     volumes:
-      - ../ansible:/ansible
       - jenkins_home:/var/jenkins_home
 
 volumes:

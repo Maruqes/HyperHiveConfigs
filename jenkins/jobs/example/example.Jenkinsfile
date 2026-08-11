@@ -10,7 +10,7 @@ pipeline {
 
         stage('Run Playbook') {
             steps {
-                sh 'ansible-playbook /ansible/example/playbook.yml'
+                sh 'ansible-playbook ansible/example/playbook.yml'
             }
         }
     }
