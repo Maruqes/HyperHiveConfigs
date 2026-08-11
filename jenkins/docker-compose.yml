@@ -6,5 +6,3 @@ services:
     network_mode: host
     environment:
       JENKINS_OPTS: --httpPort=61610
-    volumes:
-      - ../ansible:/ansible
