@@ -5,3 +5,8 @@
   tasks:
     - name: Exibir mensagem
       ansible.builtin.command: echo "Ansible executado com sucesso"
+      register: mensagem
+
+    - name: Mostrar mensagem
+      ansible.builtin.debug:
+        var: mensagem.stdout
