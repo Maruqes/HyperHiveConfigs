@@ -1,0 +1,7 @@
+- name: Exemplo local
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Exibir mensagem
+      ansible.builtin.command: echo "Ansible executado com sucesso"

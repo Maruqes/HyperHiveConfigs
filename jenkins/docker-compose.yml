@@ -1,0 +1,8 @@
+services:
+  jenkins:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    network_mode: host
+    volumes:
+      - ../ansible:/ansible
