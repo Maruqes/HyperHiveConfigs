@@ -4,5 +4,13 @@ services:
       context: .
       dockerfile: Dockerfile
     network_mode: host
+    env_file: .env
     environment:
       JENKINS_OPTS: --httpPort=61610
+      CASC_JENKINS_CONFIG: /usr/share/jenkins/ref/jenkins.yaml
+    volumes:
+      - ../ansible:/ansible
+      - jenkins_home:/var/jenkins_home
+
+volumes:
+  jenkins_home:

@@ -1,0 +1,21 @@
+jenkins:
+  systemMessage: Jenkins configured as code.
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: "${JENKINS_ADMIN_ID}"
+          name: "${JENKINS_ADMIN_NAME}"
+          password: "${JENKINS_ADMIN_PASSWORD}"
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+
+unclassified:
+  location:
+    adminAddress: "${JENKINS_ADMIN_EMAIL}"
+
+appearance:
+  themeManager:
+    disableUserThemes: true
+    theme: dark
