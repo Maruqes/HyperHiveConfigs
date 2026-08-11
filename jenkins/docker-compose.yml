@@ -7,6 +7,7 @@ services:
     env_file: .env
     environment:
       JENKINS_OPTS: --httpPort=61610
+      JAVA_OPTS: -Djenkins.install.runSetupWizard=false
       CASC_JENKINS_CONFIG: /usr/share/jenkins/ref/jenkins.yaml
     volumes:
       - ../ansible:/ansible
