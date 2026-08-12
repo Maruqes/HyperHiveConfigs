@@ -5,12 +5,14 @@ services:
       dockerfile: Dockerfile
     network_mode: host
     env_file: .env
+    restart: always
     environment:
       JENKINS_OPTS: --httpPort=61610
       JAVA_OPTS: -Djenkins.install.runSetupWizard=false
       CASC_JENKINS_CONFIG: /usr/share/jenkins/ref/jenkins.yaml
     volumes:
       - jenkins_home:/var/jenkins_home
+    
 
 volumes:
   jenkins_home:
