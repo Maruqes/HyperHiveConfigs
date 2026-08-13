@@ -55,14 +55,14 @@ pipeline {
             steps {
                 script {
                     def machines = [
-                        [param: 'UPDATE_marques512sv', host: 'marques512sv.machine', credentialsId: 'af27978f-ee69-494c-a4e5-3f63162ce8fc'],
-                        [param: 'UPDATE_marques2673sv', host: 'marques2673sv.machine', credentialsId: 'd28eafc4-23e5-431d-bd07-1b921e2b5616'],
-                        [param: 'UPDATE_vm_tools', host: 'vm.tools', credentialsId: '9f0dba2d-aff5-4b30-9c8a-0a8c35ab3da2'],
-                        [param: 'UPDATE_vm_commov', host: 'vm.commov', credentialsId: '5ad1246b-d360-4e36-a3c6-bca50183ed16'],
-                        [param: 'UPDATE_vm_immich', host: 'vm.immich', credentialsId: '7b20f729-b5f2-44c0-b4f3-4c49a8fba37e'],
-                        [param: 'UPDATE_vm_minelive', host: 'vm.minelive', credentialsId: '453618e7-70d9-4ea8-ad43-d951bde6eeab'],
-                        [param: 'UPDATE_vm_onlineprojects', host: 'vm.onlineprojects', credentialsId: '8e709aa4-7bbc-4e0a-a81f-870c5cd33655'],
-                        [param: 'UPDATE_vm_vault', host: 'vm.vault', credentialsId: '27187756-b433-452d-b83a-a62c7784cc33']
+                        [param: 'UPDATE_marques512sv', host: 'marques512sv.machine', credentialsId: 'af27978f-ee69-494c-a4e5-3f63162ce8fc', playbook: 'ansible/playbooks/update-fedora.yml'],
+                        [param: 'UPDATE_marques2673sv', host: 'marques2673sv.machine', credentialsId: 'd28eafc4-23e5-431d-bd07-1b921e2b5616', playbook: 'ansible/playbooks/update-fedora.yml'],
+                        [param: 'UPDATE_vm_tools', host: 'vm.tools', credentialsId: '9f0dba2d-aff5-4b30-9c8a-0a8c35ab3da2', playbook: 'ansible/playbooks/update-fedora.yml'],
+                        [param: 'UPDATE_vm_commov', host: 'vm.commov', credentialsId: '5ad1246b-d360-4e36-a3c6-bca50183ed16', playbook: 'ansible/playbooks/update-fedora.yml'],
+                        [param: 'UPDATE_vm_immich', host: 'vm.immich', credentialsId: '7b20f729-b5f2-44c0-b4f3-4c49a8fba37e', playbook: 'ansible/playbooks/update-apt.yml'],
+                        [param: 'UPDATE_vm_minelive', host: 'vm.minelive', credentialsId: '453618e7-70d9-4ea8-ad43-d951bde6eeab', playbook: 'ansible/playbooks/update-fedora.yml'],
+                        [param: 'UPDATE_vm_onlineprojects', host: 'vm.onlineprojects', credentialsId: '8e709aa4-7bbc-4e0a-a81f-870c5cd33655', playbook: 'ansible/playbooks/update-fedora.yml'],
+                        [param: 'UPDATE_vm_vault', host: 'vm.vault', credentialsId: '27187756-b433-452d-b83a-a62c7784cc33', playbook: 'ansible/playbooks/update-fedora.yml']
                     ]
 
                     def selectedMachines = machines.findAll { params[it.param] }
@@ -79,7 +79,7 @@ pipeline {
                                   -i ansible/inventory/machines.ini \
                                   --limit '${machine.host}' \
                                   --extra-vars "ansible_password=\${SSH_PASSWORD} ansible_become_password=\${SSH_PASSWORD}" \
-                                  ansible/playbooks/update-fedora.yml
+                                  ${machine.playbook}
                             """
                         }
                     }
