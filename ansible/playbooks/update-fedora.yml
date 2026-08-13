@@ -8,3 +8,11 @@
         name: "*"
         state: latest
         update_cache: true
+        update_only: true
+        allowerasing: false
+        skip_broken: true
+      register: dnf_upgrade
+
+    - name: Show updated DNF packages
+      ansible.builtin.debug:
+        msg: "{{ dnf_upgrade.results | default(['No DNF package changes reported.']) }}"

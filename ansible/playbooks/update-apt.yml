@@ -3,8 +3,13 @@
   become: true
   gather_facts: false
   tasks:
-    - name: Update all packages
+    - name: Upgrade all packages
       ansible.builtin.apt:
-        name: "*"
-        state: latest
         update_cache: true
+        upgrade: safe
+        dpkg_options: "force-confdef,force-confold"
+      register: apt_upgrade
+
+    - name: Show updated APT packages
+      ansible.builtin.debug:
+        msg: "{{ apt_upgrade.stdout_lines | default(['No APT package changes reported.']) }}"
